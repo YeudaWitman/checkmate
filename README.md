@@ -1,60 +1,152 @@
-# CheckMate — Restaurant Bill Splitter
+# CheckMate 🍽️
 
-Split restaurant bills accurately by item. Handles shared dishes, individual orders, tips, and discounts.
+**CheckMate** is a modern web application designed to solve one of the most common problems after dining out with friends: **accurately splitting a restaurant bill**.
+
+Unlike traditional bill splitters that simply divide the total amount equally among participants, CheckMate calculates exactly how much each diner owes based on the items they actually ordered, including shared dishes, drinks, and service charges.
+
+## Live Demo
+
+🚀 https://yeudawitman.github.io/checkmate/
+
+---
+
+## Why I Built This
+
+Almost everyone has experienced the awkward moment when the bill arrives:
+
+- One person ordered only a salad.
+- Someone else had three beers and dessert.
+- Two friends shared a pizza.
+- Another shared only the appetizers.
+
+Most bill-splitting apps either split everything equally or require complicated manual calculations.
+
+CheckMate was built to make this process simple, accurate, and fast.
+
+---
 
 ## Features
 
-- Add diners with color-coded avatars
-- Add items with name, price, quantity, and category
-- Assign each item to one or more diners (shared items split automatically)
-- Tip: percentage, fixed amount, or none — distributed proportionally or equally
-- Discount/coupon support
-- Full per-diner breakdown showing every item, tip share, and final amount
+### 👥 Participant Management
 
-## Local Development
+- Add multiple diners
+- Edit or remove participants
+- Track each person's portion of the bill
 
-```bash
-npm install
-npm run dev
-```
+### 🍕 Flexible Item Assignment
 
-Open http://localhost:5173/checkmate/
+- Add any menu item
+- Set price and quantity
+- Assign items to one or more diners
+- Support shared dishes automatically
 
-## Deploy to GitHub Pages
+### 🧮 Accurate Cost Calculation
 
-### One-time setup
+- Individual items are charged fully to the assigned diner
+- Shared items are split evenly between selected diners
+- Multiple shared groups are supported
 
-1. Create a new GitHub repository (e.g. `checkmate`)
-2. Push this code to the `main` branch:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin https://github.com/YOUR_USERNAME/checkmate.git
-   git push -u origin main
-   ```
-3. In your GitHub repo → **Settings → Pages**:
-   - Source: **GitHub Actions**
-4. The workflow in `.github/workflows/deploy.yml` will automatically build and deploy on every push to `main`.
+### 💰 Tip / Service Charge Support
 
-Your app will be live at: `https://YOUR_USERNAME.github.io/checkmate/`
+- Percentage-based tip calculation
+- Fixed amount tip support
+- Proportional distribution based on consumption
 
-### Important: update the base path
+### 📱 Mobile-Friendly Experience
 
-If your repository is named something other than `checkmate`, update `vite.config.js`:
+- Responsive design
+- Optimized for real-world restaurant usage
+- Quick item entry and bill review
 
-```js
-export default defineConfig({
-  plugins: [react()],
-  base: '/YOUR_REPO_NAME/',
-})
-```
+---
 
-And update `index.html` favicon path accordingly.
+## Example
+
+| Item | Price | Shared Between |
+|--------|--------|----------------|
+| Pizza | $24 | David, Maya |
+| Beer | $8 | Ron |
+| Salad | $15 | David, Maya, Yael |
+
+CheckMate automatically calculates each diner's share and applies any service charge according to the selected settings.
+
+---
 
 ## Tech Stack
 
-- React 18
-- Vite 5
-- Tailwind CSS 3
-- No backend — all state is local
+### Frontend
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+
+### State Management
+
+- React State / Context API
+
+### Deployment
+
+- GitHub Pages
+
+---
+
+## Project Goals
+
+This project was created as:
+
+- A practical solution to a real-world problem
+- A demonstration of modern React development practices
+- A showcase of clean UI and state management
+- A portfolio project focused on user experience and business logic
+
+---
+
+## Future Enhancements
+
+Planned ideas include:
+
+- Receipt OCR scanning
+- Real-time collaboration via QR code
+- Export to payment apps
+- Bill history
+- Multiple currencies
+- Saved restaurant sessions
+- Offline support (PWA)
+- Multiple locales
+
+---
+
+## Running Locally
+
+```bash
+git clone https://github.com/yeudawitman/checkmate.git
+
+cd checkmate
+
+npm install
+
+npm run dev
+```
+
+---
+
+## Build
+
+```bash
+npm run build
+```
+
+---
+
+## About the Author
+
+Built by **Yehuda Witman**.
+
+Full Stack Developer with experience building scalable web applications using React, TypeScript, Node.js, and cloud technologies.
+
+GitHub:
+https://github.com/yeudawitman
+
+LinkedIn:
+https://www.linkedin.com/in/yeuda-witman
