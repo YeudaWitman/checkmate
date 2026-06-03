@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import { useStore, calcTotals, colorFor, bgFor, initials } from '../store'
 
 export default function StepResults() {
   const { state, dispatch } = useStore()
+  const { t } = useTranslation()
   const tots = calcTotals(state)
 
   return (
@@ -9,18 +11,20 @@ export default function StepResults() {
 
       {/* Hero total */}
       <div className="total-card" style={{ textAlign: 'center', padding: '24px 16px' }}>
-        <div className="lbl" style={{ marginBottom: 6 }}>Total bill</div>
+        <div className="lbl" style={{ marginBottom: 6 }}>{t('results.totalBill')}</div>
         <div className="amount-big" style={{ fontSize: 38, display: 'block', marginBottom: 6 }}>
           ₪{tots.grandTotal.toFixed(2)}
         </div>
         <div style={{ fontSize: 13, color: 'var(--text3)' }}>
-          {state.diners.length} diners · {state.items.length} items
-          {tots.totalTip > 0 && ` · ₪${tots.totalTip.toFixed(2)} tip`}
+          {tots.totalTip > 0
+            ? t('results.dinersItemsTip', { diners: state.diners.length, items: state.items.length, tip: tots.totalTip.toFixed(2) })
+            : t('results.dinersItems', { diners: state.diners.length, items: state.items.length })
+          }
         </div>
       </div>
 
       {/* Per-diner breakdown */}
-      <div className="lbl">Who owes what</div>
+      <div className="lbl">{t('results.whoOwes')}</div>
 
       {state.diners.map((d, i) => {
         const sub = tots.subs[d.id] || 0
@@ -40,14 +44,14 @@ export default function StepResults() {
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: 600, fontSize: 15 }}>{d.name}</div>
                 <div style={{ fontSize: 11, color: 'var(--text3)' }}>
-                  {dinerItems.length} item{dinerItems.length !== 1 ? 's' : ''}
+                  {t('results.itemCount', { count: dinerItems.length })}
                 </div>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <div className="amount-med" style={{ color: 'var(--gold)', fontSize: 20 }}>
                   ₪{final.toFixed(2)}
                 </div>
-                <div style={{ fontSize: 11, color: 'var(--text3)' }}>{pct.toFixed(1)}% of bill</div>
+                <div style={{ fontSize: 11, color: 'var(--text3)' }}>{t('results.pctOfBill', { pct: pct.toFixed(1) })}</div>
               </div>
             </div>
 
@@ -67,7 +71,7 @@ export default function StepResults() {
                       {it.name}{it.quantity > 1 ? ` ×${it.quantity}` : ''}
                       {isShared && (
                         <span style={{ color: 'var(--text3)', fontSize: 11, marginLeft: 4 }}>
-                          (shared ÷{it.participantIds.length})
+                          {t('results.sharedSplit', { count: it.participantIds.length })}
                         </span>
                       )}
                     </span>
@@ -80,14 +84,14 @@ export default function StepResults() {
                 <>
                   <div style={{ height: 1, background: 'var(--border)', margin: '4px 0' }} />
                   <div style={{ display: 'flex', fontSize: 13 }}>
-                    <span style={{ flex: 1, color: 'var(--text3)' }}>Tip</span>
+                    <span style={{ flex: 1, color: 'var(--text3)' }}>{t('results.tipRow')}</span>
                     <span style={{ color: 'var(--green)' }}>+₪{tip.toFixed(2)}</span>
                   </div>
                 </>
               )}
               {disc > 0.005 && (
                 <div style={{ display: 'flex', fontSize: 13 }}>
-                  <span style={{ flex: 1, color: 'var(--text3)' }}>Discount</span>
+                  <span style={{ flex: 1, color: 'var(--text3)' }}>{t('results.discountRow')}</span>
                   <span style={{ color: 'var(--red)' }}>−₪{disc.toFixed(2)}</span>
                 </div>
               )}
@@ -99,7 +103,7 @@ export default function StepResults() {
       {/* Full bill summary */}
       <div className="card">
         <div style={{ fontWeight: 500, marginBottom: 12, fontFamily: 'Playfair Display, serif', fontSize: 16 }}>
-          Full bill summary
+          {t('results.fullSummary')}
         </div>
         {state.items.map(it => {
           const names = it.participantIds
@@ -112,7 +116,7 @@ export default function StepResults() {
                 {it.name}{it.quantity > 1 ? ` ×${it.quantity}` : ''}
               </span>
               <span style={{ flex: 1, color: 'var(--text3)', fontSize: 11, margin: '0 8px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', textAlign: 'right' }}>
-                {names || 'unassigned'}
+                {names || t('results.unassigned')}
               </span>
               <span style={{ fontWeight: 500, flexShrink: 0 }}>₪{(it.price * it.quantity).toFixed(2)}</span>
             </div>
@@ -120,23 +124,23 @@ export default function StepResults() {
         })}
         <div style={{ height: 1, background: 'var(--border2)', margin: '8px 0' }} />
         <div className="summary-row">
-          <span style={{ color: 'var(--text2)' }}>Subtotal</span>
+          <span style={{ color: 'var(--text2)' }}>{t('results.subtotal')}</span>
           <span>₪{tots.totalSub.toFixed(2)}</span>
         </div>
         {tots.totalTip > 0 && (
           <div className="summary-row">
-            <span style={{ color: 'var(--text2)' }}>Tip</span>
+            <span style={{ color: 'var(--text2)' }}>{t('results.tipRow')}</span>
             <span style={{ color: 'var(--green)' }}>+₪{tots.totalTip.toFixed(2)}</span>
           </div>
         )}
         {tots.discount > 0 && (
           <div className="summary-row">
-            <span style={{ color: 'var(--text2)' }}>Discount</span>
+            <span style={{ color: 'var(--text2)' }}>{t('results.discountRow')}</span>
             <span style={{ color: 'var(--red)' }}>−₪{tots.discount.toFixed(2)}</span>
           </div>
         )}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 10, marginTop: 4, borderTop: '1px solid var(--border2)' }}>
-          <span style={{ fontWeight: 600, fontSize: 15 }}>Grand total</span>
+          <span style={{ fontWeight: 600, fontSize: 15 }}>{t('results.grandTotal')}</span>
           <span className="amount-big" style={{ fontSize: 22 }}>₪{tots.grandTotal.toFixed(2)}</span>
         </div>
       </div>
@@ -147,7 +151,7 @@ export default function StepResults() {
         style={{ width: '100%', padding: 12, fontSize: 14 }}
         onClick={() => dispatch({ type: 'RESET' })}
       >
-        <i className="ti ti-refresh" style={{ marginRight: 6 }}></i>Start a new bill
+        <i className="ti ti-refresh" style={{ marginRight: 6 }}></i>{t('results.startNew')}
       </button>
     </div>
   )

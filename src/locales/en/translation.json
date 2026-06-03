@@ -1,0 +1,99 @@
+{
+  "appSubtitle": "Restaurant bill splitter",
+  "tabs": {
+    "Diners": "Diners",
+    "Items": "Items",
+    "Tip & Extras": "Tip & Extras",
+    "Results": "Results"
+  },
+  "diners": {
+    "title": "Who's at the table?",
+    "inputPlaceholder": "Enter diner name...",
+    "addBtn": "Add",
+    "quickAdd": "Quick add",
+    "continueBtn": "Continue to Items",
+    "minDinersHint": "Add at least 2 diners to continue",
+    "removeLabel": "Remove {{name}}"
+  },
+  "items": {
+    "subtotal": "Subtotal",
+    "items": "Items",
+    "diners": "Diners",
+    "addItemBtn": "Add Item",
+    "orderList": "Order list",
+    "unassigned": "Unassigned",
+    "noItems": "No items yet",
+    "noItemsHint": "Tap \"Add Item\" to start the order",
+    "continueBtn": "Continue to Tip & Extras",
+    "editLabel": "Edit {{name}}",
+    "removeLabel": "Remove {{name}}"
+  },
+  "tip": {
+    "serviceIncludedTitle": "Service charge included?",
+    "serviceIncludedDesc": "Check if the menu prices already include service",
+    "tipTitle": "Tip / Service Charge",
+    "noTip": "No tip",
+    "percentage": "Percentage %",
+    "fixed": "Fixed ₪",
+    "proportional": "Proportional",
+    "equalSplit": "Equal split",
+    "percentageLabel": "Percentage (%)",
+    "amountLabel": "Amount (₪)",
+    "distribution": "Distribution",
+    "tipPreview": "{{pct}}% of ₪{{sub}} = +₪{{tip}} tip",
+    "discountTitle": "Discount / Coupon",
+    "discountDesc": "Deducted proportionally from each diner",
+    "billPreview": "Bill preview",
+    "subtotalRow": "Subtotal",
+    "tipRow": "Tip",
+    "discountRow": "Discount",
+    "grandTotal": "Grand total",
+    "seeResultsBtn": "See Results"
+  },
+  "results": {
+    "totalBill": "Total bill",
+    "dinersItems": "{{diners}} diners · {{items}} items",
+    "dinersItemsTip": "{{diners}} diners · {{items}} items · ₪{{tip}} tip",
+    "whoOwes": "Who owes what",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} items",
+    "pctOfBill": "{{pct}}% of bill",
+    "sharedSplit": "(shared ÷{{count}})",
+    "tipRow": "Tip",
+    "discountRow": "Discount",
+    "fullSummary": "Full bill summary",
+    "subtotal": "Subtotal",
+    "grandTotal": "Grand total",
+    "startNew": "Start a new bill",
+    "unassigned": "unassigned"
+  },
+  "modal": {
+    "addItem": "Add Item",
+    "editItem": "Edit Item",
+    "closeLabel": "Close modal",
+    "itemName": "Item name",
+    "itemNamePlaceholder": "e.g. Margherita Pizza",
+    "price": "Price (₪)",
+    "pricePlaceholder": "0.00",
+    "quantity": "Quantity",
+    "category": "Category",
+    "assignTo": "Assign to",
+    "allBtn": "All",
+    "noneBtn": "None",
+    "perPerson": "₪{{amount}} per person",
+    "notes": "Notes (optional)",
+    "notesPlaceholder": "e.g. no onions, well done...",
+    "cancelBtn": "Cancel",
+    "saveChanges": "Save Changes",
+    "addToOrder": "Add to Order"
+  },
+  "categories": {
+    "food": "food",
+    "drink": "drink",
+    "dessert": "dessert",
+    "shared": "shared"
+  },
+  "lang": {
+    "toggle": "עב"
+  }
+}

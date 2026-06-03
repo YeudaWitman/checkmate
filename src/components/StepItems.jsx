@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useStore, calcTotals } from '../store'
 import ItemModal from './ItemModal'
 
 export default function StepItems() {
   const { state, dispatch } = useStore()
+  const { t } = useTranslation()
   const [showModal, setShowModal] = useState(false)
   const [editItem, setEditItem] = useState(null)
   const tots = calcTotals(state)
@@ -17,9 +19,9 @@ export default function StepItems() {
       {/* Summary bar */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
         {[
-          { label: 'Subtotal', value: `₪${tots.totalSub.toFixed(2)}`, gold: true },
-          { label: 'Items', value: state.items.length },
-          { label: 'Diners', value: state.diners.length },
+          { label: t('items.subtotal'), value: `₪${tots.totalSub.toFixed(2)}`, gold: true },
+          { label: t('items.items'), value: state.items.length },
+          { label: t('items.diners'), value: state.diners.length },
         ].map(({ label, value, gold }) => (
           <div key={label} className="total-card" style={{ padding: '10px 12px' }}>
             <div className="lbl" style={{ marginBottom: 3 }}>{label}</div>
@@ -30,13 +32,13 @@ export default function StepItems() {
 
       {/* Add item button */}
       <button className="btn-gold" style={{ width: '100%', padding: 12, fontSize: 15 }} onClick={openAdd}>
-        <i className="ti ti-plus" style={{ marginRight: 6 }}></i>Add Item
+        <i className="ti ti-plus" style={{ marginRight: 6 }}></i>{t('items.addItemBtn')}
       </button>
 
       {/* Items list */}
       {state.items.length > 0 ? (
         <>
-          <div className="lbl">Order list</div>
+          <div className="lbl">{t('items.orderList')}</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {state.items.map(item => {
               const assignedNames = item.participantIds
@@ -49,7 +51,7 @@ export default function StepItems() {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 3 }}>
                       <span style={{ fontWeight: 500, fontSize: 14 }}>{item.name}</span>
-                      {item.category && <span className={`tag tag-${item.category}`}>{item.category}</span>}
+                      {item.category && <span className={`tag tag-${item.category}`}>{t(`categories.${item.category}`)}</span>}
                       {item.quantity > 1 && (
                         <span style={{ fontSize: 11, background: 'var(--bg4)', color: 'var(--text2)', padding: '1px 6px', borderRadius: 10 }}>
                           ×{item.quantity}
@@ -57,7 +59,7 @@ export default function StepItems() {
                       )}
                     </div>
                     <div style={{ fontSize: 12, color: assignedNames.length ? 'var(--text2)' : 'var(--text3)' }}>
-                      {assignedNames.length ? assignedNames.join(', ') : 'Unassigned'}
+                      {assignedNames.length ? assignedNames.join(', ') : t('items.unassigned')}
                     </div>
                   </div>
                   <div style={{ textAlign: 'right', flexShrink: 0 }}>
@@ -67,10 +69,10 @@ export default function StepItems() {
                     )}
                   </div>
                   <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
-                    <button className="btn-icon" onClick={() => openEdit(item)} title="Edit item" aria-label={`Edit ${item.name}`}>
+                    <button className="btn-icon" onClick={() => openEdit(item)} title={t('items.editLabel', { name: item.name })} aria-label={t('items.editLabel', { name: item.name })}>
                       <i className="ti ti-pencil"></i>
                     </button>
-                    <button className="btn-icon" onClick={() => dispatch({ type: 'REMOVE_ITEM', id: item.id })} title="Remove item" aria-label={`Remove ${item.name}`}>
+                    <button className="btn-icon" onClick={() => dispatch({ type: 'REMOVE_ITEM', id: item.id })} title={t('items.removeLabel', { name: item.name })} aria-label={t('items.removeLabel', { name: item.name })}>
                       <i className="ti ti-x"></i>
                     </button>
                   </div>
@@ -82,8 +84,8 @@ export default function StepItems() {
       ) : (
         <div style={{ textAlign: 'center', padding: '32px 16px', color: 'var(--text3)' }}>
           <div style={{ fontSize: 40, marginBottom: 10 }}>🍽️</div>
-          <div style={{ fontSize: 15 }}>No items yet</div>
-          <div style={{ fontSize: 13, marginTop: 4 }}>Tap "Add Item" to start the order</div>
+          <div style={{ fontSize: 15 }}>{t('items.noItems')}</div>
+          <div style={{ fontSize: 13, marginTop: 4 }}>{t('items.noItemsHint')}</div>
         </div>
       )}
 
@@ -93,7 +95,7 @@ export default function StepItems() {
           style={{ width: '100%', padding: 12, fontSize: 15 }}
           onClick={() => dispatch({ type: 'SET_STEP', step: 2 })}
         >
-          Continue to Tip & Extras <i className="ti ti-arrow-right" style={{ marginLeft: 4 }}></i>
+          {t('items.continueBtn')} <i className="ti ti-arrow-right" style={{ marginLeft: 4 }}></i>
         </button>
       )}
 

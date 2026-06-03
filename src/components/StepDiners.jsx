@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useStore, colorFor, bgFor, initials } from '../store'
 
 export default function StepDiners() {
   const { state, dispatch } = useStore()
+  const { t } = useTranslation()
   const [name, setName] = useState('')
 
   function addDiner() {
@@ -14,7 +16,7 @@ export default function StepDiners() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <div className="lbl">Who's at the table?</div>
+      <div className="lbl">{t('diners.title')}</div>
 
       {/* Add diner form */}
       <div className="card">
@@ -23,13 +25,13 @@ export default function StepDiners() {
             value={name}
             onChange={e => setName(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && addDiner()}
-            placeholder="Enter diner name..."
+            placeholder={t('diners.inputPlaceholder')}
             maxLength={30}
             autoFocus
             style={{ flex: 1 }}
           />
           <button className="btn-gold" onClick={addDiner} style={{ flexShrink: 0 }}>
-            <i className="ti ti-plus" style={{ marginRight: 4 }}></i>Add
+            <i className="ti ti-plus" style={{ marginRight: 4 }}></i>{t('diners.addBtn')}
           </button>
         </div>
       </div>
@@ -46,8 +48,8 @@ export default function StepDiners() {
               <button
                 className="btn-icon"
                 onClick={() => dispatch({ type: 'REMOVE_DINER', id: d.id })}
-                title="Remove diner"
-                aria-label={`Remove ${d.name}`}
+                title={t('diners.removeLabel', { name: d.name })}
+                aria-label={t('diners.removeLabel', { name: d.name })}
               >
                 <i className="ti ti-x"></i>
               </button>
@@ -59,7 +61,7 @@ export default function StepDiners() {
       {/* Quick-add suggestions */}
       {state.diners.length === 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-          <div className="lbl" style={{ width: '100%', marginBottom: 2 }}>Quick add</div>
+          <div className="lbl" style={{ width: '100%', marginBottom: 2 }}>{t('diners.quickAdd')}</div>
           {['David', 'Maya', 'Ron', 'Yael', 'Noa', 'Avi'].map(n => (
             <button
               key={n}
@@ -78,11 +80,11 @@ export default function StepDiners() {
           style={{ width: '100%', padding: '12px', fontSize: 15 }}
           onClick={() => dispatch({ type: 'SET_STEP', step: 1 })}
         >
-          Continue to Items <i className="ti ti-arrow-right" style={{ marginLeft: 4 }}></i>
+          {t('diners.continueBtn')} <i className="ti ti-arrow-right" style={{ marginLeft: 4 }}></i>
         </button>
       ) : (
         <p style={{ textAlign: 'center', color: 'var(--text3)', fontSize: 13, margin: 0 }}>
-          Add at least 2 diners to continue
+          {t('diners.minDinersHint')}
         </p>
       )}
     </div>

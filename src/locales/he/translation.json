@@ -1,0 +1,99 @@
+{
+  "appSubtitle": "פיצול חשבון במסעדה",
+  "tabs": {
+    "Diners": "סועדים",
+    "Items": "פריטים",
+    "Tip & Extras": "טיפ ונוספות",
+    "Results": "תוצאות"
+  },
+  "diners": {
+    "title": "מי יושב ליד השולחן?",
+    "inputPlaceholder": "הכנס שם סועד...",
+    "addBtn": "הוסף",
+    "quickAdd": "הוספה מהירה",
+    "continueBtn": "המשך לפריטים",
+    "minDinersHint": "יש להוסיף לפחות 2 סועדים להמשך",
+    "removeLabel": "הסר את {{name}}"
+  },
+  "items": {
+    "subtotal": "סכום ביניים",
+    "items": "מנות",
+    "diners": "סועדים",
+    "addItemBtn": "הוסף פריט",
+    "orderList": "רשימת הזמנה",
+    "unassigned": "לא מוקצה",
+    "noItems": "אין פריטים עדיין",
+    "noItemsHint": "לחץ \"הוסף פריט\" כדי להתחיל את ההזמנה",
+    "continueBtn": "המשך לטיפ ונוספות",
+    "editLabel": "ערוך {{name}}",
+    "removeLabel": "הסר {{name}}"
+  },
+  "tip": {
+    "serviceIncludedTitle": "האם דמי שירות כלולים?",
+    "serviceIncludedDesc": "סמן אם מחירי התפריט כוללים כבר שירות",
+    "tipTitle": "טיפ / דמי שירות",
+    "noTip": "ללא טיפ",
+    "percentage": "אחוז %",
+    "fixed": "קבוע ₪",
+    "proportional": "יחסי",
+    "equalSplit": "חלוקה שווה",
+    "percentageLabel": "אחוז (%)",
+    "amountLabel": "סכום (₪)",
+    "distribution": "חלוקה",
+    "tipPreview": "{{pct}}% מתוך ₪{{sub}} = +₪{{tip}} טיפ",
+    "discountTitle": "הנחה / קופון",
+    "discountDesc": "מנוכה באופן יחסי מכל סועד",
+    "billPreview": "תצוגה מקדימה",
+    "subtotalRow": "סכום ביניים",
+    "tipRow": "טיפ",
+    "discountRow": "הנחה",
+    "grandTotal": "סה״כ",
+    "seeResultsBtn": "ראה תוצאות"
+  },
+  "results": {
+    "totalBill": "סה״כ חשבון",
+    "dinersItems": "{{diners}} סועדים · {{items}} פריטים",
+    "dinersItemsTip": "{{diners}} סועדים · {{items}} פריטים · ₪{{tip}} טיפ",
+    "whoOwes": "מי חייב כמה",
+    "itemCount_one": "פריט {{count}}",
+    "itemCount_other": "{{count}} פריטים",
+    "pctOfBill": "{{pct}}% מהחשבון",
+    "sharedSplit": "(משותף ÷{{count}})",
+    "tipRow": "טיפ",
+    "discountRow": "הנחה",
+    "fullSummary": "סיכום חשבון מלא",
+    "subtotal": "סכום ביניים",
+    "grandTotal": "סה״כ",
+    "startNew": "התחל חשבון חדש",
+    "unassigned": "לא מוקצה"
+  },
+  "modal": {
+    "addItem": "הוסף פריט",
+    "editItem": "ערוך פריט",
+    "closeLabel": "סגור חלון",
+    "itemName": "שם פריט",
+    "itemNamePlaceholder": "לדוגמה: פיצה מרגריטה",
+    "price": "מחיר (₪)",
+    "pricePlaceholder": "0.00",
+    "quantity": "כמות",
+    "category": "קטגוריה",
+    "assignTo": "שייך אל",
+    "allBtn": "הכל",
+    "noneBtn": "אף אחד",
+    "perPerson": "₪{{amount}} לאדם",
+    "notes": "הערות (אופציונלי)",
+    "notesPlaceholder": "לדוגמה: ללא בצל, עשוי היטב...",
+    "cancelBtn": "ביטול",
+    "saveChanges": "שמור שינויים",
+    "addToOrder": "הוסף להזמנה"
+  },
+  "categories": {
+    "food": "אוכל",
+    "drink": "שתייה",
+    "dessert": "קינוח",
+    "shared": "משותף"
+  },
+  "lang": {
+    "toggle": "EN"
+  }
+}
