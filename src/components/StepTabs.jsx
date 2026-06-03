@@ -1,11 +1,11 @@
-import { useTranslation } from 'react-i18next'
-import { useStore } from '../store'
+import { useTranslation } from 'react-i18next';
+import { useStore } from '../store';
 
-const STEP_KEYS = ['Diners', 'Items', 'Tip & Extras', 'Results']
+const STEP_KEYS = ['Diners', 'Items', 'Tip & Extras', 'Results'];
 
 export default function StepTabs() {
-  const { state, dispatch } = useStore()
-  const { t } = useTranslation()
+  const { state, dispatch } = useStore();
+  const { t } = useTranslation();
 
   return (
     <div style={{ display: 'flex', gap: 6, marginBottom: 20, overflowX: 'auto', paddingBottom: 2 }}>
@@ -19,5 +19,5 @@ export default function StepTabs() {
         </button>
       ))}
     </div>
-  )
+  );
 }

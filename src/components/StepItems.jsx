@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useStore, calcTotals } from '../store'
-import ItemModal from './ItemModal'
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useStore, calcTotals } from '../store';
+import ItemModal from './ItemModal';
 
 export default function StepItems() {
-  const { state, dispatch } = useStore()
-  const { t } = useTranslation()
-  const [showModal, setShowModal] = useState(false)
-  const [editItem, setEditItem] = useState(null)
-  const tots = calcTotals(state)
+  const { state, dispatch } = useStore();
+  const { t } = useTranslation();
+  const [showModal, setShowModal] = useState(false);
+  const [editItem, setEditItem] = useState(null);
+  const tots = calcTotals(state);
 
-  function openAdd() { setEditItem(null); setShowModal(true) }
-  function openEdit(item) { setEditItem(item); setShowModal(true) }
-  function closeModal() { setShowModal(false); setEditItem(null) }
+  function openAdd() { setEditItem(null); setShowModal(true); }
+  function openEdit(item) { setEditItem(item); setShowModal(true); }
+  function closeModal() { setShowModal(false); setEditItem(null); }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -43,8 +43,8 @@ export default function StepItems() {
             {state.items.map(item => {
               const assignedNames = item.participantIds
                 .map(id => state.diners.find(d => d.id === id)?.name)
-                .filter(Boolean)
-              const total = item.price * item.quantity
+                .filter(Boolean);
+              const total = item.price * item.quantity;
 
               return (
                 <div key={item.id} className="card-inner" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -77,7 +77,7 @@ export default function StepItems() {
                     </button>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </>
@@ -101,5 +101,5 @@ export default function StepItems() {
 
       {showModal && <ItemModal item={editItem} onClose={closeModal} />}
     </div>
-  )
+  );
 }

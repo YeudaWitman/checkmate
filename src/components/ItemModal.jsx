@@ -1,40 +1,40 @@
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useStore, colorFor } from '../store'
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useStore, colorFor } from '../store';
 
-const CATEGORY_KEYS = ['food', 'drink', 'dessert', 'shared']
+const CATEGORY_KEYS = ['food', 'drink', 'dessert', 'shared'];
 
 export default function ItemModal({ item: editItem, onClose }) {
-  const { state, dispatch } = useStore()
-  const { t } = useTranslation()
-  const isEdit = !!editItem?.id
+  const { state, dispatch } = useStore();
+  const { t } = useTranslation();
+  const isEdit = !!editItem?.id;
 
-  const [name, setName] = useState(editItem?.name || '')
-  const [price, setPrice] = useState(editItem?.price || '')
-  const [qty, setQty] = useState(editItem?.quantity || 1)
-  const [category, setCategory] = useState(editItem?.category || 'food')
-  const [pids, setPids] = useState(editItem?.participantIds || [])
-  const [notes, setNotes] = useState(editItem?.notes || '')
+  const [name, setName] = useState(editItem?.name || '');
+  const [price, setPrice] = useState(editItem?.price || '');
+  const [qty, setQty] = useState(editItem?.quantity || 1);
+  const [category, setCategory] = useState(editItem?.category || 'food');
+  const [pids, setPids] = useState(editItem?.participantIds || []);
+  const [notes, setNotes] = useState(editItem?.notes || '');
 
   function togglePid(id) {
-    setPids(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id])
+    setPids(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   }
 
   function selectAll() {
-    setPids(state.diners.map(d => d.id))
+    setPids(state.diners.map(d => d.id));
   }
 
   function save() {
-    const trimName = name.trim()
-    const parsedPrice = parseFloat(price)
-    if (!trimName || isNaN(parsedPrice) || parsedPrice <= 0) return
-    const itemData = { name: trimName, price: parsedPrice, quantity: +qty || 1, participantIds: pids, category, notes: notes.trim() }
+    const trimName = name.trim();
+    const parsedPrice = parseFloat(price);
+    if (!trimName || isNaN(parsedPrice) || parsedPrice <= 0) return;
+    const itemData = { name: trimName, price: parsedPrice, quantity: +qty || 1, participantIds: pids, category, notes: notes.trim() };
     if (isEdit) {
-      dispatch({ type: 'UPDATE_ITEM', item: { ...editItem, ...itemData } })
+      dispatch({ type: 'UPDATE_ITEM', item: { ...editItem, ...itemData } });
     } else {
-      dispatch({ type: 'ADD_ITEM', item: itemData })
+      dispatch({ type: 'ADD_ITEM', item: itemData });
     }
-    onClose()
+    onClose();
   }
 
   return (
@@ -44,7 +44,7 @@ export default function ItemModal({ item: editItem, onClose }) {
         display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
         zIndex: 100, padding: 0,
       }}
-      onClick={e => { if (e.target === e.currentTarget) onClose() }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div
         style={{
@@ -152,5 +152,5 @@ export default function ItemModal({ item: editItem, onClose }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
