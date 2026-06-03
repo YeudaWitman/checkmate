@@ -25,18 +25,15 @@ export default [
       react: { version: 'detect' },
     },
     rules: {
-      // ── Semicolons (the whole point) ──────────────────────────────
       'semi': ['error', 'always'],
       'semi-style': ['error', 'last'],
       'no-extra-semi': 'error',
 
-      // ── React ─────────────────────────────────────────────────────
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
 
-      // ── General quality ───────────────────────────────────────────
       'no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
       'no-console': 'warn',
     },
