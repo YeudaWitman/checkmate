@@ -41,7 +41,7 @@ export default function ItemModal({ item: editItem, onClose }) {
     <div
       style={{
         position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)',
-        display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
         zIndex: 100, padding: 0,
       }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
