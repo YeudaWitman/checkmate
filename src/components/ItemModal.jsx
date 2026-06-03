@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useStore, colorFor } from '../store'
 
-const CATEGORIES = ['food', 'drink', 'dessert', 'shared']
+const CATEGORY_KEYS = ['food', 'drink', 'dessert', 'shared']
 
 export default function ItemModal({ item: editItem, onClose }) {
   const { state, dispatch } = useStore()
+  const { t } = useTranslation()
   const isEdit = !!editItem?.id
 
   const [name, setName] = useState(editItem?.name || '')
@@ -55,9 +57,9 @@ export default function ItemModal({ item: editItem, onClose }) {
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: 18 }}>
           <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: 20, fontWeight: 500, flex: 1, margin: 0 }}>
-            {isEdit ? 'Edit Item' : 'Add Item'}
+            {isEdit ? t('modal.editItem') : t('modal.addItem')}
           </h2>
-          <button className="btn-icon" onClick={onClose} aria-label="Close modal">
+          <button className="btn-icon" onClick={onClose} aria-label={t('modal.closeLabel')}>
             <i className="ti ti-x" style={{ fontSize: 18 }}></i>
           </button>
         </div>
@@ -65,29 +67,29 @@ export default function ItemModal({ item: editItem, onClose }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           {/* Name */}
           <div>
-            <div className="lbl" style={{ marginBottom: 6 }}>Item name</div>
-            <input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Margherita Pizza" autoFocus />
+            <div className="lbl" style={{ marginBottom: 6 }}>{t('modal.itemName')}</div>
+            <input value={name} onChange={e => setName(e.target.value)} placeholder={t('modal.itemNamePlaceholder')} autoFocus />
           </div>
 
           {/* Price + Qty */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             <div>
-              <div className="lbl" style={{ marginBottom: 6 }}>Price (₪)</div>
-              <input type="number" value={price} onChange={e => setPrice(e.target.value)} placeholder="0.00" min="0" step="0.01" />
+              <div className="lbl" style={{ marginBottom: 6 }}>{t('modal.price')}</div>
+              <input type="number" value={price} onChange={e => setPrice(e.target.value)} placeholder={t('modal.pricePlaceholder')} min="0" step="0.01" />
             </div>
             <div>
-              <div className="lbl" style={{ marginBottom: 6 }}>Quantity</div>
+              <div className="lbl" style={{ marginBottom: 6 }}>{t('modal.quantity')}</div>
               <input type="number" value={qty} onChange={e => setQty(e.target.value)} min="1" max="99" />
             </div>
           </div>
 
           {/* Category */}
           <div>
-            <div className="lbl" style={{ marginBottom: 8 }}>Category</div>
+            <div className="lbl" style={{ marginBottom: 8 }}>{t('modal.category')}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-              {CATEGORIES.map(cat => (
+              {CATEGORY_KEYS.map(cat => (
                 <button key={cat} className={`chip chip-${category === cat ? 'sel' : 'unsel'}`} onClick={() => setCategory(cat)}>
-                  {cat}
+                  {t(`categories.${cat}`)}
                 </button>
               ))}
             </div>
@@ -96,20 +98,20 @@ export default function ItemModal({ item: editItem, onClose }) {
           {/* Assign to */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8, gap: 8 }}>
-              <div className="lbl" style={{ flex: 1, marginBottom: 0 }}>Assign to</div>
+              <div className="lbl" style={{ flex: 1, marginBottom: 0 }}>{t('modal.assignTo')}</div>
               <button
                 className="btn-ghost"
                 style={{ padding: '3px 10px', fontSize: 12, borderRadius: 6 }}
                 onClick={selectAll}
               >
-                All
+                {t('modal.allBtn')}
               </button>
               <button
                 className="btn-ghost"
                 style={{ padding: '3px 10px', fontSize: 12, borderRadius: 6 }}
                 onClick={() => setPids([])}
               >
-                None
+                {t('modal.noneBtn')}
               </button>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
@@ -129,23 +131,23 @@ export default function ItemModal({ item: editItem, onClose }) {
             </div>
             {pids.length > 1 && (
               <p style={{ fontSize: 12, color: 'var(--text3)', marginTop: 6, marginBottom: 0 }}>
-                ₪{price > 0 ? ((parseFloat(price) || 0) * (parseInt(qty) || 1) / pids.length).toFixed(2) : '—'} per person
+                {t('modal.perPerson', { amount: price > 0 ? ((parseFloat(price) || 0) * (parseInt(qty) || 1) / pids.length).toFixed(2) : '—' })}
               </p>
             )}
           </div>
 
           {/* Notes */}
           <div>
-            <div className="lbl" style={{ marginBottom: 6 }}>Notes (optional)</div>
-            <input value={notes} onChange={e => setNotes(e.target.value)} placeholder="e.g. no onions, well done..." />
+            <div className="lbl" style={{ marginBottom: 6 }}>{t('modal.notes')}</div>
+            <input value={notes} onChange={e => setNotes(e.target.value)} placeholder={t('modal.notesPlaceholder')} />
           </div>
         </div>
 
         {/* Actions */}
         <div style={{ display: 'flex', gap: 8, marginTop: 20 }}>
-          <button className="btn-ghost" style={{ flex: 1 }} onClick={onClose}>Cancel</button>
+          <button className="btn-ghost" style={{ flex: 1 }} onClick={onClose}>{t('modal.cancelBtn')}</button>
           <button className="btn-gold" style={{ flex: 1 }} onClick={save}>
-            {isEdit ? 'Save Changes' : 'Add to Order'}
+            {isEdit ? t('modal.saveChanges') : t('modal.addToOrder')}
           </button>
         </div>
       </div>
