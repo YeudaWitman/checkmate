@@ -1,21 +1,21 @@
-import { useTranslation } from 'react-i18next'
-import { useStore, calcTotals } from '../store'
+import { useTranslation } from 'react-i18next';
+import { useStore, calcTotals } from '../store';
 
 export default function StepTip() {
-  const { state, dispatch } = useStore()
-  const { t } = useTranslation()
-  const tots = calcTotals(state)
+  const { state, dispatch } = useStore();
+  const { t } = useTranslation();
+  const tots = calcTotals(state);
 
   const TIP_TYPES = [
     { value: 'none', label: t('tip.noTip') },
     { value: 'pct', label: t('tip.percentage') },
     { value: 'fixed', label: t('tip.fixed') },
-  ]
+  ];
 
   const DIST_TYPES = [
     { value: 'proportional', label: t('tip.proportional') },
     { value: 'equal', label: t('tip.equalSplit') },
-  ]
+  ];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -145,7 +145,7 @@ export default function StepTip() {
         {t('tip.seeResultsBtn')} <i className="ti ti-arrow-right" style={{ marginLeft: 4 }}></i>
       </button>
     </div>
-  )
+  );
 }
 
 function Toggle({ value, onChange }) {
@@ -169,5 +169,5 @@ function Toggle({ value, onChange }) {
         background: 'white', transition: 'left 0.2s',
       }} />
     </div>
-  )
+  );
 }

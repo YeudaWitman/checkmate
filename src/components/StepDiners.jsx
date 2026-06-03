@@ -1,17 +1,17 @@
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useStore, colorFor, bgFor, initials } from '../store'
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useStore, colorFor, bgFor, initials } from '../store';
 
 export default function StepDiners() {
-  const { state, dispatch } = useStore()
-  const { t } = useTranslation()
-  const [name, setName] = useState('')
+  const { state, dispatch } = useStore();
+  const { t } = useTranslation();
+  const [name, setName] = useState('');
 
   function addDiner() {
-    const trimmed = name.trim()
-    if (!trimmed) return
-    dispatch({ type: 'ADD_DINER', name: trimmed })
-    setName('')
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    dispatch({ type: 'ADD_DINER', name: trimmed });
+    setName('');
   }
 
   return (
@@ -88,5 +88,5 @@ export default function StepDiners() {
         </p>
       )}
     </div>
-  )
+  );
 }

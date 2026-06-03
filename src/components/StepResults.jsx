@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next'
-import { useStore, calcTotals, colorFor, bgFor, initials } from '../store'
+import { useTranslation } from 'react-i18next';
+import { useStore, calcTotals, colorFor, bgFor, initials } from '../store';
 
 export default function StepResults() {
-  const { state, dispatch } = useStore()
-  const { t } = useTranslation()
-  const tots = calcTotals(state)
+  const { state, dispatch } = useStore();
+  const { t } = useTranslation();
+  const tots = calcTotals(state);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -27,12 +27,12 @@ export default function StepResults() {
       <div className="lbl">{t('results.whoOwes')}</div>
 
       {state.diners.map((d, i) => {
-        const sub = tots.subs[d.id] || 0
-        const tip = tots.tipShare[d.id] || 0
-        const disc = tots.discShare[d.id] || 0
-        const final = tots.finals[d.id] || 0
-        const pct = tots.grandTotal > 0 ? (final / tots.grandTotal) * 100 : 0
-        const dinerItems = state.items.filter(it => it.participantIds.includes(d.id))
+        const sub = tots.subs[d.id] || 0;
+        const tip = tots.tipShare[d.id] || 0;
+        const disc = tots.discShare[d.id] || 0;
+        const final = tots.finals[d.id] || 0;
+        const pct = tots.grandTotal > 0 ? (final / tots.grandTotal) * 100 : 0;
+        const dinerItems = state.items.filter(it => it.participantIds.includes(d.id));
 
         return (
           <div key={d.id} style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 14, padding: 16 }}>
@@ -63,8 +63,8 @@ export default function StepResults() {
             {/* Item breakdown */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
               {dinerItems.map(it => {
-                const share = (it.price * it.quantity) / it.participantIds.length
-                const isShared = it.participantIds.length > 1
+                const share = (it.price * it.quantity) / it.participantIds.length;
+                const isShared = it.participantIds.length > 1;
                 return (
                   <div key={it.id} style={{ display: 'flex', alignItems: 'center', fontSize: 13 }}>
                     <span style={{ flex: 1, color: 'var(--text2)' }}>
@@ -77,7 +77,7 @@ export default function StepResults() {
                     </span>
                     <span style={{ color: 'var(--text)', fontWeight: 500 }}>₪{share.toFixed(2)}</span>
                   </div>
-                )
+                );
               })}
 
               {tip > 0.005 && (
@@ -97,7 +97,7 @@ export default function StepResults() {
               )}
             </div>
           </div>
-        )
+        );
       })}
 
       {/* Full bill summary */}
@@ -109,7 +109,7 @@ export default function StepResults() {
           const names = it.participantIds
             .map(id => state.diners.find(d => d.id === id)?.name)
             .filter(Boolean)
-            .join(', ')
+            .join(', ');
           return (
             <div key={it.id} className="summary-row" style={{ fontSize: 13 }}>
               <span style={{ color: 'var(--text2)', flexShrink: 0 }}>
@@ -120,7 +120,7 @@ export default function StepResults() {
               </span>
               <span style={{ fontWeight: 500, flexShrink: 0 }}>₪{(it.price * it.quantity).toFixed(2)}</span>
             </div>
-          )
+          );
         })}
         <div style={{ height: 1, background: 'var(--border2)', margin: '8px 0' }} />
         <div className="summary-row">
@@ -154,5 +154,5 @@ export default function StepResults() {
         <i className="ti ti-refresh" style={{ marginRight: 6 }}></i>{t('results.startNew')}
       </button>
     </div>
-  )
+  );
 }
